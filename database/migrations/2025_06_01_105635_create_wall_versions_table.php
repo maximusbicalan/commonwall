@@ -15,7 +15,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->unsignedInteger('version');
             $table->json('design_json');
-            $table->timestamp('published_at');
             $table->timestamps();
 
             $table->foreignUuid('wall_id')->constrained('freedom_walls')->onDelete('cascade');
