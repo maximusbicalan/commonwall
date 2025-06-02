@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::factory(3)->make();
+        $users = User::factory(3)->create();
 
         // check the details of each user created (dont save to database)
-        dd($users->toArray());
+        // dd($users->toArray());
     }
 }
