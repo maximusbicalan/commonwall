@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Log;
 
 class FreedomWall extends Model
 {
@@ -41,7 +43,21 @@ class FreedomWall extends Model
             }
         });
     }
-
+    // 
+    public static function safeCreate(array $data = []): self
+    {
+        try {
+            return self::create($data);
+        } catch (\Exception $e) {
+            Log::error('FreedomWall::safeCreate failed', [
+                'error' => $e->getMessage(),
+                'data' => $data
+            ]);
+            
+            // return empty instance or handle error as needed
+            return new self();
+        }
+    }
     // --- RELATIONS ---
     public function user(): BelongsTo
     {
@@ -53,5 +69,4 @@ class FreedomWall extends Model
     {
         return $this->hasMany(WallVersion::class, 'wall_id', 'id');
     }
-
 }
