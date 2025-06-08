@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call([
             
-            // UserSeeder::class, // seeds users
+            UserSeeder::class, // seeds users
             FreedomWallSeeder::class, // seeds users and their freedom walls
             WallVersionSeeder::class, // seeds wall versions for the first most recent freedom wall
         ]);
