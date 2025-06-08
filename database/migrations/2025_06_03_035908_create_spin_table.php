@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('spin', function (Blueprint $table) {
+        Schema::create('spins', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->timestamps();
             $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
